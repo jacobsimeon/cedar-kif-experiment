@@ -19,4 +19,12 @@
     return task;
 }
 
++ (id)taskWithDictionary:(NSDictionary *)taskAttrs {
+    Task *task = [[self alloc] init];
+    task.title  = taskAttrs[@"title"];
+    task.completed  = [taskAttrs[@"completed"] boolValue];
+    
+    return task;
+}
+
 @end

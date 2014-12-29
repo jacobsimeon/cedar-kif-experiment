@@ -4,10 +4,6 @@
 target 'Todos' do
 end
 
-target 'Specs' do
-  pod 'Cedar'
-end
-
 target 'Features', exclusive: true do
   pod 'Cedar'
   pod 'KIF', '~> 3.0', configurations: %w(Debug)

@@ -13,5 +13,6 @@
 @property BOOL completed;
 
 + taskWithTitle:(NSString *)title;
++ taskWithDictionary:(NSDictionary *)taskAttrs;
 
 @end

@@ -23,7 +23,11 @@
 
     cell.task = task;
     cell.textLabel.text = task.title;
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    if(task.completed) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     cell.accessibilityLabel = task.title;
     
     return cell;

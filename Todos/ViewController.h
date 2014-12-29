@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 #import "TaskTableViewCell.h"
+#import "TaskRepository.h"
 
 @interface ViewController : UIViewController<
     UITableViewDelegate,
@@ -17,9 +18,9 @@
     TaskTableViewCellDelegate
 >
 
-@property NSMutableArray *tasks;
 @property UITextField *taskNameField;
 @property UITableView *taskList;
+@property TaskRepository *taskRepository;
 
 @end
 

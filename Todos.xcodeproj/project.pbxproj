@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28E32CA484F4A2A5BB30014F /* libPods-Features.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ACD4FBCC0D04806E1C8D6D /* libPods-Features.a */; };
+		AE6DEA7A1A51C8FE0032BF91 /* TaskRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DEA791A51C8FE0032BF91 /* TaskRepository.m */; };
+		AE6DEA7C1A51C9220032BF91 /* TaskRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE6DEA7B1A51C9220032BF91 /* TaskRepositorySpec.mm */; };
 		AE75BCD01A43461600FD0F3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE75BCCF1A43461600FD0F3B /* main.m */; };
 		AE75BCD31A43461600FD0F3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE75BCD21A43461600FD0F3B /* AppDelegate.m */; };
 		AE75BCD61A43461600FD0F3B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE75BCD51A43461600FD0F3B /* ViewController.m */; };
@@ -16,10 +18,10 @@
 		AE75BCDE1A43461600FD0F3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE75BCDC1A43461600FD0F3B /* LaunchScreen.xib */; };
 		AEA59E5D1A43576100CEA45D /* TodosSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = AEA59E5C1A43576100CEA45D /* TodosSpec.mm */; };
 		AEA59E5F1A4359E500CEA45D /* libPods-Features-KIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA59E5E1A4359E500CEA45D /* libPods-Features-KIF.a */; };
-		AEA59E611A43732200CEA45D /* SpecHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = AEA59E601A43732200CEA45D /* SpecHelper.h */; };
 		AEA59E641A449FD300CEA45D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA59E631A449FD300CEA45D /* Task.m */; };
 		AEA59E681A44C16B00CEA45D /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEA59E671A44C16B00CEA45D /* TaskCell.xib */; };
 		AEA59E6B1A44CE0400CEA45D /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA59E6A1A44CE0400CEA45D /* TaskTableViewCell.m */; };
+		AEEA59C01A51BE1D00862B1F /* FeatureSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = AEEA59BF1A51BE1D00862B1F /* FeatureSpec.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,9 @@
 		A687CEC812D094F85A590CA0 /* Pods-Specs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.release.xcconfig"; sourceTree = "<group>"; };
 		AE4B47911A434F4B00D82F48 /* Features.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Features.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE4B47941A434F4B00D82F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE6DEA781A51C8FE0032BF91 /* TaskRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskRepository.h; sourceTree = "<group>"; };
+		AE6DEA791A51C8FE0032BF91 /* TaskRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskRepository.m; sourceTree = "<group>"; };
+		AE6DEA7B1A51C9220032BF91 /* TaskRepositorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TaskRepositorySpec.mm; sourceTree = "<group>"; };
 		AE75BCCA1A43461600FD0F3B /* Todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE75BCCE1A43461600FD0F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE75BCCF1A43461600FD0F3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,12 +59,13 @@
 		AEA59E5A1A43562B00CEA45D /* libPods-Specs-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Specs-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-Specs-Cedar.a"; sourceTree = "<group>"; };
 		AEA59E5C1A43576100CEA45D /* TodosSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TodosSpec.mm; sourceTree = "<group>"; };
 		AEA59E5E1A4359E500CEA45D /* libPods-Features-KIF.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Features-KIF.a"; path = "Pods/build/Debug-iphoneos/libPods-Features-KIF.a"; sourceTree = "<group>"; };
-		AEA59E601A43732200CEA45D /* SpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecHelper.h; sourceTree = "<group>"; };
 		AEA59E621A449FD300CEA45D /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		AEA59E631A449FD300CEA45D /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		AEA59E671A44C16B00CEA45D /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		AEA59E691A44CE0400CEA45D /* TaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCell.h; sourceTree = "<group>"; };
 		AEA59E6A1A44CE0400CEA45D /* TaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
+		AEEA59BF1A51BE1D00862B1F /* FeatureSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FeatureSpec.mm; sourceTree = "<group>"; };
+		AEEA59C11A51BE9F00862B1F /* FeatureSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureSpec.h; sourceTree = "<group>"; };
 		BBFC2BAF316CBD1C657E90B2 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		C3ACD4FBCC0D04806E1C8D6D /* libPods-Features.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Features.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ABD23C79B7EBEAE51C3549 /* Pods-Features.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Features.release.xcconfig"; path = "Pods/Target Support Files/Pods-Features/Pods-Features.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +107,9 @@
 			children = (
 				AE4B47931A434F4B00D82F48 /* Supporting Files */,
 				AEA59E5C1A43576100CEA45D /* TodosSpec.mm */,
-				AEA59E601A43732200CEA45D /* SpecHelper.h */,
+				AEEA59BF1A51BE1D00862B1F /* FeatureSpec.mm */,
+				AEEA59C11A51BE9F00862B1F /* FeatureSpec.h */,
+				AE6DEA7B1A51C9220032BF91 /* TaskRepositorySpec.mm */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -150,6 +158,8 @@
 				AEA59E671A44C16B00CEA45D /* TaskCell.xib */,
 				AEA59E691A44CE0400CEA45D /* TaskTableViewCell.h */,
 				AEA59E6A1A44CE0400CEA45D /* TaskTableViewCell.m */,
+				AE6DEA781A51C8FE0032BF91 /* TaskRepository.h */,
+				AE6DEA791A51C8FE0032BF91 /* TaskRepository.m */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -313,8 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEA59E611A43732200CEA45D /* SpecHelper.h in Sources */,
+				AEEA59C01A51BE1D00862B1F /* FeatureSpec.mm in Sources */,
 				AEA59E5D1A43576100CEA45D /* TodosSpec.mm in Sources */,
+				AE6DEA7C1A51C9220032BF91 /* TaskRepositorySpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +337,7 @@
 				AE75BCD61A43461600FD0F3B /* ViewController.m in Sources */,
 				AE75BCD31A43461600FD0F3B /* AppDelegate.m in Sources */,
 				AEA59E6B1A44CE0400CEA45D /* TaskTableViewCell.m in Sources */,
+				AE6DEA7A1A51C8FE0032BF91 /* TaskRepository.m in Sources */,
 				AE75BCD01A43461600FD0F3B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,13 @@
-#import "SpecHelper.h"
+#import <Cedar/Cedar.h>
+#import <KIF.h>
+#import "FeatureSpec.h"
+
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "TaskRepository.h"
+
+using namespace Cedar::Matchers;
+using namespace Cedar::Doubles;
 
 int taskCount = 0;
 NSString* nextTaskName(){
@@ -10,9 +17,16 @@ NSString* nextTaskName(){
 FEATURE_SPEC_BEGIN(TodosSpec)
 
 beforeEach(^{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"tasks"];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+    
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     ViewController *vc = (ViewController*)delegate.window.rootViewController;
-    vc.tasks = [NSMutableArray array];
+    vc.taskRepository = [TaskRepository repositoryWithFilename:@"tasks"];
+    
     [vc.taskList reloadData];
 });
 
@@ -142,11 +156,10 @@ describe(@"Clearing completed todos", ^{
 
         AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
         ViewController *vc = (ViewController*)delegate.window.rootViewController;
-        vc.tasks.count should equal(4);
+        [vc tableView:vc.taskList numberOfRowsInSection:0] should equal(4);
         
         [tester tapViewWithAccessibilityLabel:@"Clear Completed"];
-        
-        vc.tasks.count should equal(1);
+        [vc tableView:vc.taskList numberOfRowsInSection:0] should equal(1);
     });
 });
 

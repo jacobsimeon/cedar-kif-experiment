@@ -8,15 +8,17 @@
 
 #import "ViewController.h"
 #import "TaskTableViewCell.h"
+#import "TaskRepository.h"
+
+@interface ViewController ()
+@end
 
 @implementation ViewController {
     IBOutlet UITextField *taskNameField;
     IBOutlet UITableView *taskList;
-    
-    NSMutableArray *tasks;
 }
 
-@synthesize tasks;
+@synthesize taskRepository;
 @synthesize taskNameField;
 @synthesize taskList;
 
@@ -31,20 +33,15 @@
     [self.taskList addGestureRecognizer:lpgr];
     
     [super viewDidLoad];
-    self.tasks = [NSMutableArray array];
+    self.taskRepository = [TaskRepository repositoryWithFilename:@"tasks"];
 }
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     CGPoint p = [gestureRecognizer locationInView:self.taskList];
     NSIndexPath *indexPath = [self.taskList indexPathForRowAtPoint:p];
     
-    if (indexPath == nil) {
-        NSLog(@"long press on table view but not on a row");
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         [self tableView:self.taskList didLongPressRowAtIndexPath:indexPath];
-        NSLog(@"gestureRecognizer.state = %d", (int)gestureRecognizer.state);
-    } else {
-        NSLog(@"gestureRecognizer.state = %d", (int)gestureRecognizer.state);
     }
 }
 
@@ -53,10 +50,10 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.tasks addObject:[Task taskWithTitle:textField.text]];
+    [self.taskRepository save:[Task taskWithTitle:textField.text]];
     [self.taskList reloadData];
-    textField.text = @"";
 
+    textField.text = @"";
     [textField resignFirstResponder];
     return YES;
 }
@@ -64,6 +61,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    NSArray *tasks = [self.taskRepository readAll];
     Task *task = [tasks objectAtIndex:indexPath.row];
     TaskTableViewCell *cell = [taskList dequeueReusableCellWithIdentifier:task.title];
     
@@ -76,31 +74,24 @@
 }
 
 -(void)tableView:(UITableView *)view didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Selected");
-    Task *task = [tasks objectAtIndex:indexPath.row];
-    task.completed = !task.completed;
+    TaskTableViewCell *cell = (TaskTableViewCell *)[self tableView:view cellForRowAtIndexPath:indexPath];
+    Task *task = cell.task;
     
-    UITableViewCell *cell = [taskList cellForRowAtIndexPath:indexPath];
-    if(task.completed) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    task.completed = !task.completed;
+    [self.taskRepository save:task];
 }
 
 - (void) tableView:(UITableView *)view didLongPressRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Starting editing");
     TaskTableViewCell *cell = (TaskTableViewCell *)[self.taskList cellForRowAtIndexPath:indexPath];
     if(!cell.isEditing) {
-        NSLog(@"Editing enabled");
         [cell enableEditing];
     }
 }
 
 - (void) taskCellViewDidFinishEditing:(TaskTableViewCell *)view {
-    NSLog(@"Finished editing");
     NSIndexPath *indexPath = [self.taskList indexPathForCell:view];
-    
+    [self.taskRepository save:view.task];
     [self.taskList reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationNone];
     
@@ -112,24 +103,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
+    NSArray *tasks = [self.taskRepository readAll];
     return [tasks count];
 }
 
 - (IBAction)clearCompletedTasks:(id)sender {
-    NSIndexSet *completedTaskIndexes = [tasks indexesOfObjectsPassingTest:^(Task *task, NSUInteger idx, BOOL *stop){
-        return task.completed;
-    }];
-    
-    [tasks removeObjectsAtIndexes:completedTaskIndexes];
+    NSArray *tasks = [[self.taskRepository readAll] copy];
+    for (Task *task in tasks) {
+        if(task.completed) {
+            [self.taskRepository remove:task];
+        }
+    }
+
     [taskList reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath {
+ forRowAtIndexPath:(NSIndexPath *)indexPath {    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tasks removeObjectAtIndex:indexPath.row];
-        [self.taskList reloadData];
+        NSArray *tasks = [self.taskRepository readAll];
+        Task *task = [tasks objectAtIndex:indexPath.row];
+
+        if(task != nil) {
+            [self.taskRepository remove:task];
+            [self.taskList reloadData];
+        }
     }
 }
 
